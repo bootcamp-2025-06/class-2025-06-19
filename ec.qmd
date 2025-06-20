@@ -13,6 +13,21 @@ library(tidyverse)
 library(primer.data)
 ```
 
+Opportunity Insights is a non-profit research and policy organization founded by economists Raj Chetty, John Friedman, and Nathaniel Hendren, with the mission to improve economic mobility and reduce inequality in the United States. The program leverages large-scale datasets to study the factors influencing upward mobility, such as neighborhood environments, education, and social connections. One of its key findings is the concept of "Economic Connectedness" (EC), which measures the degree of cross-class interaction and has been shown to strongly correlate with upward mobility. The organization's work often involves visualizing data, like the graph showing the relationship between county populations and EC, to highlight insights that can inform policy decisions. Opportunity Insights collaborates with policymakers, educators, and community leaders to translate research into actionable strategies aimed at expanding economic opportunity.
+
+```{r}
+connectedness |> 
+  drop_na() |> 
+  ggplot(aes(x = population)) +
+    geom_histogram(bins = 100) +
+    scale_x_log10(labels = scales::comma_format()) +
+    labs(title = "US County Populations in 2018",
+         subtitle = "Populations are highly skewed",
+         x = "Population",
+         y = "Number of Counties",
+         caption = "Opportunity Insights")
+```
+
 
 ```{r}
 connectedness |> 
@@ -27,3 +42,5 @@ connectedness |>
          y = "Economic Connectedness",
          caption = "Opportunity Insights")
 ```
+
+
